@@ -571,7 +571,6 @@ public:
     // TODO(dave): publishGraph
 
     // Text
-    int32_t id = -1;
     visual_tools_->publishText(pose1, "Text", WHITE, scale, id);
     pose1.translation().y() += step;
 
@@ -615,7 +614,6 @@ public:
       {
         visual_tools_->publishSphere(pose1, GREY, scale);
       }
-      int32_t id = -1;
       visual_tools_->publishText(pose2, "Size " + visual_tools_->scaleToString(scale), WHITE, scale,
                                  id);
 
