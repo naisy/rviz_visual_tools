@@ -1271,7 +1271,7 @@ bool RvizVisualTools::publishSphere(const geometry_msgs::msg::Pose& pose,
   sphere_marker_.header.stamp = clock_interface_->get_clock()->now();
 
   // Overwrite ID or increment?
-  if (id == 0)
+  if (id == -1)
   {
     sphere_marker_.id++;
   }
@@ -1296,7 +1296,7 @@ bool RvizVisualTools::publishSphere(const geometry_msgs::msg::PoseStamped& pose,
   // Set the frame ID and timestamp
   sphere_marker_.header = pose.header;
 
-  if (id == 0)
+  if (id == -1)
   {
     sphere_marker_.id++;
   }
@@ -1408,7 +1408,7 @@ bool RvizVisualTools::publishArrow(const geometry_msgs::msg::Pose& pose, Colors 
   arrow_marker_.header.stamp = clock_interface_->get_clock()->now();
   arrow_marker_.header.frame_id = base_frame_;
 
-  if (id == 0)
+  if (id == -1)
   {
     arrow_marker_.id++;
   }
@@ -1441,7 +1441,7 @@ bool RvizVisualTools::publishArrow(const geometry_msgs::msg::PoseStamped& pose, 
   // Set the frame ID and timestamp.
   arrow_marker_.header = pose.header;
 
-  if (id == 0)
+  if (id == -1)
   {
     arrow_marker_.id++;
   }
@@ -1479,7 +1479,7 @@ bool RvizVisualTools::publishArrow(const geometry_msgs::msg::Point& start,
   arrow_marker_.header.stamp = clock_interface_->get_clock()->now();
   arrow_marker_.header.frame_id = base_frame_;
 
-  if (id == 0)
+  if (id == -1)
   {
     arrow_marker_.id++;
   }
@@ -1521,7 +1521,8 @@ bool RvizVisualTools::publishAxisLabeled(const geometry_msgs::msg::Pose& pose,
   pose_shifted.position.x -= 0.05;
   pose_shifted.position.y -= 0.05;
   pose_shifted.position.z -= 0.05;
-  publishText(pose_shifted, label, color, static_cast<Scales>(static_cast<int>(scale) + 1), false);
+  int32_t id = -1;
+  publishText(pose_shifted, label, color, static_cast<Scales>(static_cast<int>(scale) + 1), id);
   return true;
 }
 
@@ -1690,7 +1691,7 @@ bool RvizVisualTools::publishMesh(const geometry_msgs::msg::Pose& pose,
   // Set the timestamp
   mesh_marker_.header.stamp = clock_interface_->get_clock()->now();
 
-  if (id == 0)
+  if (id == -1)
   {
     mesh_marker_.id++;
   }
@@ -1734,7 +1735,7 @@ bool RvizVisualTools::publishMesh(const geometry_msgs::msg::Pose& pose,
 {
   triangle_marker_.header.stamp = clock_interface_->get_clock()->now();
 
-  if (id == 0)
+  if (id == -1)
   {
     triangle_marker_.id++;
   }
@@ -1816,7 +1817,7 @@ bool RvizVisualTools::publishCuboid(const geometry_msgs::msg::Point& point1,
   cuboid_marker_.header.stamp = clock_interface_->get_clock()->now();
   cuboid_marker_.ns = ns;
 
-  if (id == 0)
+  if (id == -1)
   {  // Provide a new id every call to this function
     cuboid_marker_.id++;
   }
@@ -2290,7 +2291,7 @@ bool RvizVisualTools::publishWireframeCuboid(const Eigen::Isometry3d& pose,
   line_list_marker_.header.stamp = builtin_interfaces::msg::Time();
   line_list_marker_.ns = ns;
 
-  if (id == 0)
+  if (id == -1)
   {  // Provide a new id every call to this function
     line_list_marker_.id++;
   }
@@ -2376,7 +2377,7 @@ bool RvizVisualTools::publishWireframeRectangle(const Eigen::Isometry3d& pose, d
                                                 double width, Colors color, Scales scale,
                                                 std::size_t id)
 {
-  if (id == 0)
+  if (id == -1)
   {  // Provide a new id every call to this function
     line_list_marker_.id++;
   }
@@ -2598,37 +2599,35 @@ bool RvizVisualTools::publishSpheres(const std::vector<geometry_msgs::msg::Point
 }
 
 bool RvizVisualTools::publishText(const Eigen::Isometry3d& pose, const std::string& text,
-                                  Colors color, Scales scale, bool static_id)
+                                  Colors color, Scales scale, size_t id)
 {
-  return publishText(convertPose(pose), text, color, getScale(scale), static_id);
+  return publishText(convertPose(pose), text, color, getScale(scale), id);
 }
 
 bool RvizVisualTools::publishText(const Eigen::Isometry3d& pose, const std::string& text,
                                   Colors color, const geometry_msgs::msg::Vector3 scale,
-                                  bool static_id)
+                                  size_t id)
 {
-  return publishText(convertPose(pose), text, color, scale, static_id);
+  return publishText(convertPose(pose), text, color, scale, id);
 }
 
 bool RvizVisualTools::publishText(const geometry_msgs::msg::Pose& pose, const std::string& text,
-                                  Colors color, Scales scale, bool static_id)
+                                  Colors color, Scales scale, size_t id)
 {
-  return publishText(pose, text, color, getScale(scale), static_id);
+  return publishText(pose, text, color, getScale(scale), id);
 }
 
 bool RvizVisualTools::publishText(const geometry_msgs::msg::Pose& pose, const std::string& text,
                                   Colors color, const geometry_msgs::msg::Vector3 scale,
-                                  bool static_id)
+                                  size_t id)
 {
-  // Save the ID if this is a static ID or keep incrementing ID if not static
-  double temp_id = text_marker_.id;
-  if (static_id)
+  if (id  == -1)
   {
-    text_marker_.id = 0;
+    text_marker_.id++;
   }
   else
   {
-    text_marker_.id++;
+    text_marker_.id = id;
   }
 
   text_marker_.header.stamp = clock_interface_->get_clock()->now();
@@ -2641,12 +2640,6 @@ bool RvizVisualTools::publishText(const geometry_msgs::msg::Pose& pose, const st
   text_marker_.scale.y = 0;
   // Helper for publishing rviz markers
   publishMarker(text_marker_);
-
-  // Restore the ID count if needed
-  if (static_id)
-  {
-    text_marker_.id = temp_id;
-  }
 
   return true;
 }

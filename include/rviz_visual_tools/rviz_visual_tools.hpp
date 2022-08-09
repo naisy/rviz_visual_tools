@@ -1024,17 +1024,17 @@ public:
    * \param text - what message to display
    * \param color - an enum pre-defined name of a color
    * \param scale - an enum pre-defined name of a size
-   * \param static_id - if true, only one text can be published at a time
+   * \param id - marker id. if -1, make the new id, else make/update the target id.
    * \return true on success
    */
   bool publishText(const Eigen::Isometry3d& pose, const std::string& text, Colors color = WHITE,
-                   Scales scale = MEDIUM, bool static_id = true);
+                   Scales scale = MEDIUM, size_t id = 0);
   bool publishText(const Eigen::Isometry3d& pose, const std::string& text, Colors color,
-                   const geometry_msgs::msg::Vector3 scale, bool static_id = true);
+                   const geometry_msgs::msg::Vector3 scale, size_t id = 0);
   bool publishText(const geometry_msgs::msg::Pose& pose, const std::string& text,
-                   Colors color = WHITE, Scales scale = MEDIUM, bool static_id = true);
+                   Colors color = WHITE, Scales scale = MEDIUM, size_t id = 0);
   bool publishText(const geometry_msgs::msg::Pose& pose, const std::string& text, Colors color,
-                   const geometry_msgs::msg::Vector3 scale, bool static_id = true);
+                   const geometry_msgs::msg::Vector3 scale, size_t id = 0);
 
   /**
    * \brief Convert an Eigen pose to a geometry_msg pose

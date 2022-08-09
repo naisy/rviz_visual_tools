@@ -92,7 +92,8 @@ public:
   {
     Eigen::Isometry3d pose_copy = pose;
     pose_copy.translation().x() -= 0.2;
-    visual_tools_->publishText(pose_copy, label, rvt::WHITE, rvt::XXLARGE, false);
+    int32_t id = -1;
+    visual_tools_->publishText(pose_copy, label, rvt::WHITE, rvt::XXLARGE, id);
   }
 
   void testRows(double& x_location)
@@ -469,9 +470,10 @@ public:
 
     // Show test label
     pose1.translation().x() = x_location - 0.1;
+    int32_t id = -1;
     visual_tools_->publishText(
         pose1, "Testing consistency of " + visual_tools_->scaleToString(scale) + " marker scale",
-        WHITE, XLARGE, false);
+        WHITE, XLARGE, id);
 
     pose1.translation().x() = x_location;
 
@@ -569,7 +571,8 @@ public:
     // TODO(dave): publishGraph
 
     // Text
-    visual_tools_->publishText(pose1, "Text", WHITE, scale, false);
+    int32_t id = -1;
+    visual_tools_->publishText(pose1, "Text", WHITE, scale, id);
     pose1.translation().y() += step;
 
     // Display test
@@ -590,7 +593,8 @@ public:
 
     // Show test label
     pose1.translation().x() = x_location - 0.1;
-    visual_tools_->publishText(pose1, "Testing sizes of marker scale", WHITE, XLARGE, false);
+    int32_t id = -1;
+    visual_tools_->publishText(pose1, "Testing sizes of marker scale", WHITE, XLARGE, id);
 
     pose1.translation().x() = x_location;
     pose2.translation().x() = x_location;
@@ -611,8 +615,9 @@ public:
       {
         visual_tools_->publishSphere(pose1, GREY, scale);
       }
+      int32_t id = -1;
       visual_tools_->publishText(pose2, "Size " + visual_tools_->scaleToString(scale), WHITE, scale,
-                                 false);
+                                 id);
 
       scale = static_cast<Scales>(static_cast<int>(scale) + 1);
     }
