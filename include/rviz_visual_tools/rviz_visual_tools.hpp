@@ -578,32 +578,32 @@ public:
    * \return true on success
    */
   bool publishSphere(const Eigen::Isometry3d& pose, Colors color = BLUE, Scales scale = MEDIUM,
-                     const std::string& ns = "Sphere", std::size_t id = 0);
+                     const std::string& ns = "Sphere", std::size_t id = -1);
   bool publishSphere(const Eigen::Vector3d& point, Colors color = BLUE, Scales scale = MEDIUM,
-                     const std::string& ns = "Sphere", std::size_t id = 0);
+                     const std::string& ns = "Sphere", std::size_t id = -1);
   bool publishSphere(const Eigen::Vector3d& point, Colors color, double scale,
-                     const std::string& ns = "Sphere", std::size_t id = 0);
+                     const std::string& ns = "Sphere", std::size_t id = -1);
   bool publishSphere(const geometry_msgs::msg::Point& point, Colors color = BLUE,
-                     Scales scale = MEDIUM, const std::string& ns = "Sphere", std::size_t id = 0);
+                     Scales scale = MEDIUM, const std::string& ns = "Sphere", std::size_t id = -1);
   bool publishSphere(const geometry_msgs::msg::Pose& pose, Colors color = BLUE,
-                     Scales scale = MEDIUM, const std::string& ns = "Sphere", std::size_t id = 0);
+                     Scales scale = MEDIUM, const std::string& ns = "Sphere", std::size_t id = -1);
   bool publishSphere(const geometry_msgs::msg::Pose& pose, Colors color, double scale,
-                     const std::string& ns = "Sphere", std::size_t id = 0);
+                     const std::string& ns = "Sphere", std::size_t id = -1);
   bool publishSphere(const geometry_msgs::msg::Pose& pose, Colors color,
                      const geometry_msgs::msg::Vector3 scale, const std::string& ns = "Sphere",
-                     std::size_t id = 0);
+                     std::size_t id = -1);
   bool publishSphere(const geometry_msgs::msg::Pose& pose, const std_msgs::msg::ColorRGBA& color,
                      const geometry_msgs::msg::Vector3 scale, const std::string& ns = "Sphere",
-                     std::size_t id = 0);
+                     std::size_t id = -1);
   bool publishSphere(const Eigen::Isometry3d& pose, const std_msgs::msg::ColorRGBA& color,
                      const geometry_msgs::msg::Vector3 scale, const std::string& ns = "Sphere",
-                     std::size_t id = 0);
+                     std::size_t id = -1);
   bool publishSphere(const Eigen::Vector3d& point, const std_msgs::msg::ColorRGBA& color,
                      const geometry_msgs::msg::Vector3 scale, const std::string& ns = "Sphere",
-                     std::size_t id = 0);
+                     std::size_t id = -1);
   bool publishSphere(const geometry_msgs::msg::PoseStamped& pose, Colors color,
                      const geometry_msgs::msg::Vector3 scale, const std::string& ns = "Sphere",
-                     std::size_t id = 0);
+                     std::size_t id = -1);
 
   /**
    * \brief Display a marker of a series of spheres
@@ -677,13 +677,13 @@ public:
    * \return true on success
    */
   bool publishZArrow(const Eigen::Isometry3d& pose, Colors color = BLUE, Scales scale = MEDIUM,
-                     double length = 0.0, std::size_t id = 0);
+                     double length = 0.0, std::size_t id = -1);
   bool publishZArrow(const geometry_msgs::msg::Pose& pose, Colors color = BLUE,
                      Scales scale = MEDIUM, double length = 0.0);
   bool publishZArrow(const geometry_msgs::msg::PoseStamped& pose, Colors color = BLUE,
                      Scales scale = MEDIUM, double length = 0.0);
   bool publishZArrow(const geometry_msgs::msg::PoseStamped& pose, Colors color = BLUE,
-                     Scales scale = MEDIUM, double length = 0.0, std::size_t id = 0);
+                     Scales scale = MEDIUM, double length = 0.0, std::size_t id = -1);
 
   /**
    * \brief Display an arrow along the x-axis of a pose
@@ -696,13 +696,13 @@ public:
    * \return true on success
    */
   bool publishArrow(const Eigen::Isometry3d& pose, Colors color = BLUE, Scales scale = MEDIUM,
-                    double length = 0.0, std::size_t id = 0);
+                    double length = 0.0, std::size_t id = -1);
   bool publishArrow(const geometry_msgs::msg::Pose& pose, Colors color = BLUE,
-                    Scales scale = MEDIUM, double length = 0.0, std::size_t id = 0);
+                    Scales scale = MEDIUM, double length = 0.0, std::size_t id = -1);
   bool publishArrow(const geometry_msgs::msg::PoseStamped& pose, Colors color = BLUE,
-                    Scales scale = MEDIUM, double length = 0.0, std::size_t id = 0);
+                    Scales scale = MEDIUM, double length = 0.0, std::size_t id = -1);
   bool publishArrow(const geometry_msgs::msg::Point& start, const geometry_msgs::msg::Point& end,
-                    Colors color = BLUE, Scales scale = MEDIUM, std::size_t id = 0);
+                    Colors color = BLUE, Scales scale = MEDIUM, std::size_t id = -1);
 
   /**
    * \brief Display a rectangular cuboid
@@ -715,7 +715,7 @@ public:
                      Colors color = BLUE);
   bool publishCuboid(const geometry_msgs::msg::Point& point1,
                      const geometry_msgs::msg::Point& point2, Colors color = BLUE,
-                     const std::string& ns = "Cuboid", std::size_t id = 0);
+                     const std::string& ns = "Cuboid", std::size_t id = -1);
 
   /**
    * \brief Display a rectangular cuboid
@@ -848,7 +848,7 @@ public:
    */
   bool publishWireframeCuboid(const Eigen::Isometry3d& pose, double depth, double width,
                               double height, Colors color = BLUE,
-                              const std::string& ns = "Wireframe Cuboid", std::size_t id = 0);
+                              const std::string& ns = "Wireframe Cuboid", std::size_t id = -1);
 
   /**
    * \brief Publish transformed wireframe cuboid. Useful eg to show an oriented bounding box.
@@ -863,7 +863,7 @@ public:
    */
   bool publishWireframeCuboid(const Eigen::Isometry3d& pose, const Eigen::Vector3d& min_point,
                               const Eigen::Vector3d& max_point, Colors color = BLUE,
-                              const std::string& ns = "Wireframe Cuboid", std::size_t id = 0);
+                              const std::string& ns = "Wireframe Cuboid", std::size_t id = -1);
 
   /**
    * \brief Publish outline of a rectangle
@@ -876,7 +876,7 @@ public:
    * \return true on success
    */
   bool publishWireframeRectangle(const Eigen::Isometry3d& pose, double height, double width,
-                                 Colors color = BLUE, Scales scale = MEDIUM, std::size_t id = 0);
+                                 Colors color = BLUE, Scales scale = MEDIUM, std::size_t id = -1);
   bool publishWireframeRectangle(const Eigen::Isometry3d& pose, const Eigen::Vector3d& p1_in,
                                  const Eigen::Vector3d& p2_in, const Eigen::Vector3d& p3_in,
                                  const Eigen::Vector3d& p4_in, Colors color, Scales scale);
@@ -985,10 +985,10 @@ public:
    */
   bool publishMesh(const Eigen::Isometry3d& pose, const std::string& file_name,
                    Colors color = CLEAR, double scale = 1, const std::string& ns = "mesh",
-                   std::size_t id = 0);
+                   std::size_t id = -1);
   bool publishMesh(const geometry_msgs::msg::Pose& pose, const std::string& file_name,
                    Colors color = CLEAR, double scale = 1, const std::string& ns = "mesh",
-                   std::size_t id = 0);
+                   std::size_t id = -1);
 
   /**
    * \brief Display a mesh from triangles and vertices
@@ -1003,10 +1003,10 @@ public:
    */
   bool publishMesh(const Eigen::Isometry3d& pose, const shape_msgs::msg::Mesh& mesh,
                    Colors color = CLEAR, double scale = 1, const std::string& ns = "mesh",
-                   std::size_t id = 0);
+                   std::size_t id = -1);
   bool publishMesh(const geometry_msgs::msg::Pose& pose, const shape_msgs::msg::Mesh& mesh,
                    Colors color = CLEAR, double scale = 1, const std::string& ns = "mesh",
-                   std::size_t id = 0);
+                   std::size_t id = -1);
 
   /**
    * \brief Display a graph
@@ -1028,13 +1028,13 @@ public:
    * \return true on success
    */
   bool publishText(const Eigen::Isometry3d& pose, const std::string& text, Colors color = WHITE,
-                   Scales scale = MEDIUM, size_t id = 0);
+                   Scales scale = MEDIUM, size_t id = -1);
   bool publishText(const Eigen::Isometry3d& pose, const std::string& text, Colors color,
-                   const geometry_msgs::msg::Vector3 scale, size_t id = 0);
+                   const geometry_msgs::msg::Vector3 scale, size_t id = -1);
   bool publishText(const geometry_msgs::msg::Pose& pose, const std::string& text,
-                   Colors color = WHITE, Scales scale = MEDIUM, size_t id = 0);
+                   Colors color = WHITE, Scales scale = MEDIUM, size_t id = -1);
   bool publishText(const geometry_msgs::msg::Pose& pose, const std::string& text, Colors color,
-                   const geometry_msgs::msg::Vector3 scale, size_t id = 0);
+                   const geometry_msgs::msg::Vector3 scale, size_t id = -1);
 
   /**
    * \brief Convert an Eigen pose to a geometry_msg pose
